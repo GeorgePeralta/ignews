@@ -9,7 +9,7 @@ export default NextAuth({
   providers: [
     GithubProviders({
       clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,        
+      clientSecret: process.env.GITHUB_SECRET,      
     }),    
   ], 
   callbacks: {
@@ -21,13 +21,13 @@ export default NextAuth({
             q.Not(
               q.Exists(
                 q.Match(
-                  q.Index("user_by_email"),
+                  q.Index('user_by_email'),
                     q.Casefold(user.email)
                 )
               )
             ),
             q.Create(
-              q.Collection("users"),
+              q.Collection('users'),
               {data: { email }}
             ),
             q.Get(
@@ -40,8 +40,9 @@ export default NextAuth({
         )        
         return true
 
-      } catch(err) {
+      } catch (err){
         console.log(err);
+        
         return false
 
       }        
