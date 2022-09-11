@@ -1,0 +1,54 @@
+.container {
+  //espaçamento nas lateriais caso a largura seja menor que 1120px
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.posts {
+  //centralizando
+  max-width: 720px;
+  //topo-laterais-bottom
+  margin: 5rem auto 0;
+
+  //display por default é inline
+  a {
+    display: block;
+
+    //cada post que vier depois de um post
+    & + a {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--gray-700);
+    }
+
+
+    time {
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      color: var(--gray-300);
+    }
+
+     //display por default é inline
+    strong {
+      display: block;
+      font-size: 1.5rem;
+      margin-top: 1rem;
+      line-height: 2rem;
+      transition: color 0.2s;
+
+    }
+
+    p {
+      color: var(--gray-300);
+      margin-top: 0.5rem;
+      line-height: 1.625rem; //26px
+    }
+
+    &:hover strong{
+      color: var(--yellow-500);
+    }
+  }
+
+}
