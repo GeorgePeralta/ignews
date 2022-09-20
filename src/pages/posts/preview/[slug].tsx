@@ -1,10 +1,12 @@
-import {  GetStaticProps } from "next"
-import { getSession, useSession } from "next-auth/react"
+import { useEffect } from "react"
+import {  GetStaticPaths, GetStaticProps } from "next"
+import { useSession } from "next-auth/react"
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
+
 import { RichText } from "prismic-dom"
-import { useEffect } from "react"
+
 import { getPrismicClient } from "../../../services/prismic"
 
 import styles from '../post.module.scss'
@@ -55,7 +57,7 @@ export default function PostPreview({ post }: PostPreviewProps) {
 }
 
 // eslint-disable-next-line @next/next/no-typos
-export const getStaticPaths = () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
     fallback: 'blocking'
@@ -68,7 +70,6 @@ export const getStaticProps : GetStaticProps = async ({ params }) => {
   const prismic = getPrismicClient()
 
   const response = await prismic.getByUID<any>('publication', String(slug), {})
-
 
   //formatando os dados 
   const post = {
@@ -85,7 +86,8 @@ export const getStaticProps : GetStaticProps = async ({ params }) => {
   return {
     props: {
       post,
-    }
+    },
+    redirect: 60 * 30 // 30 Minutos
   }
 
 }
