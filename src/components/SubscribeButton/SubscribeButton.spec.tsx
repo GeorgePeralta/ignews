@@ -50,8 +50,9 @@ describe('SubscribeButton component', () => {
         },
         activeSubscription: 'fake-active-subscription',
         expires: 'fake-expires',
-      }      
-    } as any   
+      },
+      status: 'authenticated'
+    }  
   )
 
     useRouterMocked.mockReturnValueOnce({
@@ -66,6 +67,6 @@ describe('SubscribeButton component', () => {
 
       fireEvent.click(subscribeButton)
 
-      expect(pushMock).toHaveBeenCalled()  
+      expect(pushMock).toHaveBeenCalledWith('/posts')  
   })
 })
