@@ -25,6 +25,7 @@ describe('Header component', () => {
     render(
       <Header />       
     )
+    //te sugere como fazer o teste.
       screen.logTestingPlaygroundURL()
 
       expect(screen.getByText('Home')).toBeInTheDocument()
